@@ -1,16 +1,4 @@
----
-layout: post
-title: Hosting the Notify API
-date: '2019-05-287T15:15:00.002-04:00'
-author: Michael Callaghan
-tags: firebase,functions,node
-layout: post
-feature: assets/img/
-thumbnail: https://walkingriver.com/assets/img/
-cover_image: https://walkingriver.com/assets/img/
-canonical_url: https://walkingriver.com/notify-api/
-published: false
----
+# Background
 
 As part of my recent Pluralsight Course, [Building Progressive Web Apps with Ionic](https://app.pluralsight.com/library/courses/progressive-web-apps-ionic/), I needed a public-facing API that its demo application could call. I implemented a simple Node/Express web service and deployed it to Firebase Functions using Google free "Spark" Plan. One major drawback to the Spark Plan is that it has a pretty low threshold limit for the number of requests per minute it will allow. In this post, I will describe how you can download the web service's code and host it both locally and in your own Firebase account, and then how to modify the course's demo app to call your version instead of mine.
 
