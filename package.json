@@ -1,6 +1,7 @@
 {
   "name": "notify-api",
-  "version": "1.0.0",
+  "repository": {"url": "https://github.com/walkingriver/notify-api"},
+  "version": "19.5.19",
   "description": "",
   "main": "index.js",
   "scripts": {
