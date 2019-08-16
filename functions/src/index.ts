@@ -6,10 +6,12 @@ import { EventsService } from './event-service';
 
 import * as express from 'express';
 import * as cors from 'cors';
-import { EventResponse } from './interfaces';
+import { EventResponse, AddressDto, EndpointDto } from './interfaces';
+import { DispatcherService } from './dispatcher-service';
 
 const app = express();
 const service = new EventsService();
+const dispatcher = new DispatcherService();
 
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
@@ -69,6 +71,30 @@ app.get('/acknowledgements/:id/:since', (req, res) => {
 });
 
 // app.get('/', (req, res) => res.send(service.list()));
+
+app.post('/addresses/validate', (req, res) => {
+  const address: AddressDto = JSON.parse(req.body);
+  console.log('Validating Address: ', JSON.stringify(address));
+  return res.send(dispatcher.validate(address));
+});
+
+app.post('/endpoints', (req,res) => {
+  const endpoint: EndpointDto = JSON.parse(req.body);
+  console.log('Creating Endpoint: ', JSON.stringify(endpoint));
+  return res.send(dispatcher.addEndpoint(endpoint));
+});
+
+app.put('/endpoints/:id', (req,res) => {
+  const endpoint: EndpointDto = JSON.parse(req.body);
+  console.log('Updating Endpoint: ', JSON.stringify(endpoint));
+  return res.send(dispatcher.updateEndpoint(endpoint));
+});
+
+app.put('/endpoints/:id/provision', (req,res) => {
+  const endpoint: EndpointDto = JSON.parse(req.body);
+  console.log('Provisioning Endpoint: ', JSON.stringify(endpoint));
+  return res.send(dispatcher.provisionEndpoint(endpoint));
+});
 
 // Expose Express API as a single Cloud Function:
 exports.api = functions.https.onRequest(app);
