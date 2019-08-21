@@ -13,14 +13,22 @@ const app = express();
 const service = new EventsService();
 const dispatcher = new DispatcherService();
 
+app.use((req, res, next) => {
+  console.log(req.originalUrl, req.body);
+  next();
+});
+
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));
+
+app.use(express.json());
 
 // Add middleware to authenticate requests
 // app.use(myMiddleware);
 
 // build multiple CRUD interfaces:
 app.get('/latest', (req, res) => {
+  console.log('HI THERE!');
   const event = service.getLatest();
   const id = event.id;
   const prevId = id - 1;
@@ -73,27 +81,26 @@ app.get('/acknowledgements/:id/:since', (req, res) => {
 // app.get('/', (req, res) => res.send(service.list()));
 
 app.post('/addresses/validate', (req, res) => {
-  const address: AddressDto = JSON.parse(req.body);
+  const address: AddressDto = req.body;
   console.log('Validating Address: ', JSON.stringify(address));
   return res.send(dispatcher.validate(address));
 });
 
 app.post('/endpoints', (req,res) => {
-  const endpoint: EndpointDto = JSON.parse(req.body);
+  const endpoint: EndpointDto = req.body;
   console.log('Creating Endpoint: ', JSON.stringify(endpoint));
   return res.send(dispatcher.addEndpoint(endpoint));
 });
 
 app.put('/endpoints/:id', (req,res) => {
-  const endpoint: EndpointDto = JSON.parse(req.body);
+  const endpoint: EndpointDto = req.body;
   console.log('Updating Endpoint: ', JSON.stringify(endpoint));
   return res.send(dispatcher.updateEndpoint(endpoint));
 });
 
 app.put('/endpoints/:id/provision', (req,res) => {
-  const endpoint: EndpointDto = JSON.parse(req.body);
-  console.log('Provisioning Endpoint: ', JSON.stringify(endpoint));
-  return res.send(dispatcher.provisionEndpoint(endpoint));
+  console.log('Provisioning Endpoint: ', req.params.id);
+  return res.send(dispatcher.provisionEndpoint(req.params.id));
 });
 
 // Expose Express API as a single Cloud Function:

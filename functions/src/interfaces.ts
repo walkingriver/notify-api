@@ -42,7 +42,7 @@ export interface EndpointDto {
 	id: string;
 	name: string;
 	elin: string;
-	address: AddressDto;
+	address?: AddressDto;
 }
 
 export interface AddressDto {
