@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "ps-notify-api",
-    "staging": "my-notify-api"
-  }
+    "staging": "ps-notify-api"
+  },
+  "targets": {}
 }

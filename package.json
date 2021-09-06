@@ -1,6 +1,8 @@
 {
   "name": "notify-api",
-  "repository": {"url": "https://github.com/walkingriver/notify-api"},
+  "repository": {
+    "url": "https://github.com/walkingriver/notify-api"
+  },
   "version": "19.5.19",
   "description": "",
   "main": "index.js",
@@ -13,5 +15,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4"
+  },
+  "devDependencies": {
   }
 }
