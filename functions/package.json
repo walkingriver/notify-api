@@ -11,16 +11,17 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@types/node": "^14.17.15",
     "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "faker": "^4.1.0",
-    "firebase-admin": "^9.11.1",
-    "firebase-functions": "^3.15.5"
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "firebase-admin": "8.9.2",
+    "firebase-functions": "3.3.0"
   },
   "devDependencies": {
-    "firebase-functions-test": "^0.1.6",
-    "tslint": "^5.8.0",
-    "typescript": "^3.1.0"
+    "firebase-functions-test": "^0.3.2",
+    "tslint": "^5.20.1",
+    "typescript": "^4.4.3"
   },
   "private": true,
   "engines": {

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es6"],
+    "lib": ["esnext"],
     "module": "commonjs",
     "noImplicitReturns": true,
     "outDir": "lib",
@@ -10,5 +10,9 @@
   "compileOnSave": true,
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "*.d.ts"
   ]
 }

@@ -43,7 +43,7 @@ app.get('/since/:since', (req, res) => {
 });
 
 app.get('/event/:id', (req, res) => {
-  const id = req.params.id;
+  const id = +req.params.id;
   const prevId = id - 1;
   const event = service.getById(id);
   console.log('Got Event:', JSON.stringify(event));
@@ -65,12 +65,10 @@ app.get('/acknowledgements/:id/:since', (req, res) => {
   console.log(ms);
   const since = new Date(ms);
   console.log('Acks Since:', since.toUTCString());
-  return res.send(service.getAcknowledgements(req.params.id, since));
+  return res.send(service.getAcknowledgements(+req.params.id, since));
 });
 
 // app.get('/', (req, res) => res.send(service.list()));
 
 // Expose Express API as a single Cloud Function:
 exports.api = functions.https.onRequest(app);
-
-
